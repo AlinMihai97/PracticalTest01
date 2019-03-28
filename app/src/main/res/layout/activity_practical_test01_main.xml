@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PracticalTest01MainActivity">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context="ro.pub.cs.systems.eim.practicaltest01.PracticalTest01MainActivity">
+
+        <Button
+            android:id="@+id/navigate_to_secondary_activity_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/navigate_to_secondary_activity" />
+
+        <EditText
+            android:id="@+id/left_edit_text"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/navigate_to_secondary_activity_button"
+            android:layout_alignParentLeft="true"
+            android:enabled="false"
+            android:gravity="center"
+            android:inputType="number"
+            android:saveEnabled="false"
+            />
+
+        <EditText
+            android:id="@+id/right_edit_text"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/navigate_to_secondary_activity_button"
+            android:layout_alignParentRight="true"
+            android:enabled="false"
+            android:gravity="center"
+            android:inputType="number"
+            android:saveEnabled="false" />
+
+        <Button
+            android:id="@+id/left_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/left_edit_text"
+            android:layout_alignLeft="@id/left_edit_text"
+            android:layout_alignRight="@id/left_edit_text"
+            android:text="@string/press_me" />
+
+        <Button
+            android:id="@+id/right_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/right_edit_text"
+            android:layout_alignLeft="@id/right_edit_text"
+            android:layout_alignRight="@id/right_edit_text"
+            android:text="@string/press_me_too" />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
