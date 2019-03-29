@@ -25,8 +25,7 @@ public class PracticalTest01Service extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         int firstNumber = intent.getIntExtra("firstNumber", -1);
-        int secondNumber = intent.getIntExtra("secondNumber", -1);
-        pt = new ProcessingThread(this, firstNumber, secondNumber);
+        pt = new ProcessingThread(this, firstNumber);
         pt.start();
         return Service.START_REDELIVER_INTENT;
     }
@@ -40,46 +39,40 @@ public class PracticalTest01Service extends Service {
 class ProcessingThread extends Thread {
 
     private Context context = null;
-    private boolean isRunning = true;
 
     private Random random = new Random();
 
-    private double arithmeticMean;
-    private double geometricMean;
+    int score;
 
-    public ProcessingThread(Context context, int firstNumber, int secondNumber) {
+    public ProcessingThread(Context context, int firstNumber) {
         this.context = context;
-
-        arithmeticMean = (firstNumber + secondNumber) / 2;
-        geometricMean = Math.sqrt(firstNumber * secondNumber);
+        this.score = firstNumber;
     }
 
     @Override
     public void run() {
         Log.d("[ProcessingThread]", "Thread has started!");
-        while (isRunning) {
-            sendMessage();
-            sleep();
-        }
+        sleep();
+        sendMessage();
+
         Log.d("[ProcessingThread]", "Thread has stopped!");
     }
 
     private void sendMessage() {
         Intent intent = new Intent();
         intent.setAction(Constants.actionTypes[random.nextInt(Constants.actionTypes.length)]);
-        intent.putExtra("message", new Date(System.currentTimeMillis()) + " " + arithmeticMean + " " + geometricMean);
+        intent.putExtra("message", new Date(System.currentTimeMillis()) + " Victory " + score);
         context.sendBroadcast(intent);
     }
 
     private void sleep() {
         try {
-            Thread.sleep(10000);
+            Thread.sleep(2000);
         } catch (InterruptedException interruptedException) {
             interruptedException.printStackTrace();
         }
     }
 
     public void stopThread() {
-        isRunning = false;
     }
 }
